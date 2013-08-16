@@ -1,6 +1,5 @@
 
-#pragma mark -
-#pragma mark Block Def
+#pragma mark - Block Defintions
 typedef BOOL (^SHTabBarControllerPredicateBlock)(UITabBarController  * theTabBarController,
 UIViewController * theViewController);
 

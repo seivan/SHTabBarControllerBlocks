@@ -19,7 +19,7 @@
   };
   
   [self.tabVc SH_setShouldSelectViewControllerBlock:block];
-  STAssertEqualObjects(self.tabVc.SH_blockShouldSelectViewController, block, nil);
+
   STAssertTrue(self.tabVc.SH_blockShouldSelectViewController(self.tabVc, self.firstVc), nil);
   STAssertTrue(didAssert, nil);
 
@@ -41,7 +41,6 @@
   };
   
   [self.tabVc SH_setDidSelectViewControllerBlock:block];
-  STAssertEqualObjects(self.tabVc.SH_blockDidSelectViewController, block, nil);
   self.tabVc.SH_blockDidSelectViewController(self.tabVc, self.firstVc);
   STAssertTrue(didAssert, nil);
   
@@ -64,7 +63,6 @@
   };
   
   [self.tabVc SH_setWillBeginCustomizingViewControllersBlock:block];
-  STAssertEqualObjects(self.tabVc.SH_blockWillBeginCustomizingViewControllers, block, nil);
   self.tabVc.SH_blockWillBeginCustomizingViewControllers(self.tabVc, controllers);
   STAssertTrue(didAssert, nil);
   
@@ -90,7 +88,6 @@
   };
   
   [self.tabVc SH_setWillEndCustomizingViewControllersBlock:block];
-  STAssertEqualObjects(self.tabVc.SH_blockWillEndCustomizingViewControllers, block, nil);
   self.tabVc.SH_blockWillEndCustomizingViewControllers(self.tabVc, controllers, YES);
   STAssertTrue(didAssert, nil);
   
@@ -104,7 +101,7 @@
   __block BOOL didAssert = NO;
   NSArray * controllers = @[self.firstVc,self.secondVc];
 
-  SHTabBarControllerCustomizingWithChangeBlock block = ^(UITabBarController  * theTabBarController,
+  SHTabBarControllerCustomizingWithChangeBlock block = ^void(UITabBarController  * theTabBarController,
                                                          NSArray * theViewControllers,
                                                          BOOL      isChanged) {
     
@@ -116,7 +113,6 @@
   };
   
   [self.tabVc SH_setDidEndCustomizingViewControllersBlock:block];
-  STAssertEqualObjects(self.tabVc.SH_blockDidEndCustomizingViewControllers, block, nil);
   self.tabVc.SH_blockDidEndCustomizingViewControllers(self.tabVc, controllers, YES);
   STAssertTrue(didAssert, nil);
   

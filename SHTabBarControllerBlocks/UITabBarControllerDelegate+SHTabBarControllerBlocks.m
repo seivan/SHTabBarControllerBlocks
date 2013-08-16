@@ -104,7 +104,7 @@ SHStaticConstString(SH_blockDidEndCustomizingViewControllers);
 - (void)tabBarController:(UITabBarController *)tabBarController didEndCustomizingViewControllers:(NSArray *)viewControllers changed:(BOOL)changed; {
   
   SHTabBarControllerCustomizingWithChangeBlock block = [[self mapTableForObject:tabBarController]
-                                            objectForKey:SH_blockDidSelectViewController];
+                                            objectForKey:SH_blockDidEndCustomizingViewControllers];
   if(block) block(tabBarController, viewControllers, changed);
   
 }
@@ -174,7 +174,7 @@ SHStaticConstString(SH_blockDidEndCustomizingViewControllers);
 #pragma mark - setters
 -(void)setBlock:(id)theBlock forKey:(NSString *)theKey; {
   NSParameterAssert(theKey);
-  if(theBlock) [self.mapBlocks setObject:theBlock  forKey:theKey];
+  if(theBlock) [self.mapBlocks setObject:[theBlock copy]  forKey:theKey];
   else         [self.mapBlocks removeObjectForKey:theKey];
 }
 

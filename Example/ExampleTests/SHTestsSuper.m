@@ -10,9 +10,13 @@
   self.secondVc              = UIViewController.new;
   self.tabVc                 = [[UITabBarController alloc] init];
   self.tabVc.viewControllers = @[self.firstVc, self.secondVc];
-  
+
+  self.firstVc.title = @"firstVc";
+  self.secondVc.title = @"secondVc";
+
   [UIApplication sharedApplication].keyWindow.rootViewController = self.tabVc;
   [[UIApplication sharedApplication].keyWindow makeKeyAndVisible];
+  
   
 }
 @end
