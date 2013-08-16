@@ -8,14 +8,14 @@ Pod::Spec.new do |s|
   source_files   = "#{name}/**/*.{h,m}"
 
   s.version      = version
-  s.summary      = "Blocks for UINavigationController life cycle willShow and didShow - swizzle free!"
+  s.summary      = "Blocks for UITabBarController replacing delegates - libffi & swizzle free!"
   s.description  = <<-DESC
 
                     * Swizzle and junk free
                     * No need to clean up after - The blocks are self maintained.
-                    * UINavigationController is referenced in a map with weak properties
                     * Prefixed selectors.
                     * Minimum clutter on top of the public interface.
+                    * Replacing delegate calls with blocks instead.
                     
                     DESC
 

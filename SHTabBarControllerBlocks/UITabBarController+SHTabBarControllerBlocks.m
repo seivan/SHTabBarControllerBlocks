@@ -1,5 +1,5 @@
 
-#import "UITabBarControllerDelegate+SHTabBarControllerBlocks.h"
+#import "UITabBarController+SHTabBarControllerBlocks.h"
 
 #define SHStaticConstString(X) static NSString * const X = @#X
 
