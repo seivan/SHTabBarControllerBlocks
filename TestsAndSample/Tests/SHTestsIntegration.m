@@ -1,6 +1,22 @@
 
 #import "SHTestsSuper.h"
 
+@interface SHTestedAnimationController : NSObject
+<UIViewControllerAnimatedTransitioning>
+@end
+
+
+@implementation SHTestedAnimationController
+-(NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext; {
+  return 0.3;
+}
+// This method can only  be a nop if the transition is interactive and not a percentDriven interactive transition.
+-(void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext; {
+  
+}
+@end
+
+
 @interface SHTestsIntegration : SHTestsSuper
 
 @end
@@ -139,6 +155,41 @@
   XCTAssertTrue(didAssert);
   
   
+}
+
+-(void)testSH_setInteractiveTransitioningBlock; {
+  __block BOOL didAssert = NO;
+  
+  __weak typeof(self) weakSelf = self;
+  [self.tabVc SH_setInteractiveControllerBlock:^id<UIViewControllerInteractiveTransitioning>(UITabBarController *tabBarController, id<UIViewControllerAnimatedTransitioning> animationController) {
+    XCTAssertEqualObjects(weakSelf.tabVc, tabBarController);
+    didAssert = YES;
+    return UIPercentDrivenInteractiveTransition.new;
+    
+  }];
+  UIPercentDrivenInteractiveTransition * percentTrans = self.tabVc.SH_blockInteractiveController(self.tabVc, nil);
+  XCTAssert(percentTrans);
+  XCTAssertEqualObjects([percentTrans class], [UIPercentDrivenInteractiveTransition class]);
+  XCTAssertTrue(didAssert);
+}
+
+-(void)testSH_setAnimatedTransitioningBlock; {
+  __block BOOL didAssert = NO;
+  
+  __weak typeof(self) weakSelf = self;
+  SHTestedAnimationController  * animation = SHTestedAnimationController.new;
+  [self.tabVc SH_setAnimatedControllerBlock:^id<UIViewControllerAnimatedTransitioning>(UITabBarController *tabBarController, UIViewController *fromVC, UIViewController *toVC) {
+    
+    XCTAssertEqualObjects(weakSelf.tabVc, tabBarController);
+    XCTAssertEqualObjects(weakSelf.tabVc.viewControllers.firstObject, fromVC);
+    XCTAssertEqualObjects(weakSelf.firstVc, toVC);
+    didAssert = YES;
+    return animation;
+  }];
+  id<UIViewControllerAnimatedTransitioning> animatedTrans = self.tabVc.SH_blockAnimatedController(self.tabVc, self.tabVc.viewControllers.firstObject, self.firstVc);
+  XCTAssert(animatedTrans);
+  XCTAssertEqualObjects(animation, animatedTrans);
+  XCTAssertTrue(didAssert);
 }
 
 
