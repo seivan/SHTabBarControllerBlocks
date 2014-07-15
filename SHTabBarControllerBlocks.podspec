@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   name           = "SHTabBarControllerBlocks"
   url            = "https://github.com/seivan/#{name}"
   git_url        = "#{url}.git"
-  version        = "2.0.0"
+  version        = "2.0.1"
 
   s.name         = name
   source_files   = "#{name}/**/*.{h,m}"
