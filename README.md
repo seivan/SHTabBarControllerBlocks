@@ -1,3 +1,5 @@
+Deprecated, please use [RxCocoa](https://github.com/ReactiveX/RxSwift) 
+
 #SHTabBarControllerBlocks
 
 [![CI Status](https://img.shields.io/travis/seivan/SHTabBarControllerBlocks.svg?style=flat)](https://travis-ci.org/seivan/SHTabBarControllerBlocks)
